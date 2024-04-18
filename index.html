@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Simple Chat App</title>
+</head>
+<body>
+  <div class="usernameForm">
+    <form id="usernameForm">
+      <label for="username">Enter your username:</label>
+      <input type="text" id="usernameInput" autocomplete="off" />
+      <button type="submit">Join Chat</button>
+    </form>
+  </div>
+
+  <div id="chatWindow" style="display: none">
+    <ul id="messages"></ul>
+    <div class="messageSend">
+      <input id="messageInput" autocomplete="off" /><button id="sendButton">Send</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const usernameForm = document.getElementById("usernameForm");
+    const chatWindow = document.getElementById("chatWindow");
+    const messageInput = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
+    const messages = document.getElementById("messages");
+
+    usernameForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = document.getElementById("usernameInput").value.trim();
+      if (username !== "") {
+        socket.emit("new user", username);
+
+        usernameForm.style.display = "none";
+        chatWindow.style.display = "block";
+      }
+    });
+
+    sendButton.addEventListener("click", () => {
+      sendMessage();
+    });
+
+    messageInput.addEventListener("keypress", (event) => {
+      if (event.keyCode === 13) {
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message !== "") {
+        socket.emit("chat message", message);
+        messageInput.value = "";
+      }
+    }
+
+    socket.on("chat message", (data) => {
+      const { username, message } = data;
+      const messageContainer = document.createElement("div");
+      messageContainer.className = "message-container";
+
+      const usernameElement = document.createElement("div");
+      usernameElement.className = "username";
+      usernameElement.textContent = username;
+
+      const messageElement = document.createElement("div");
+      messageElement.className = "message";
+      messageElement.textContent = message;
+
+      messageContainer.appendChild(usernameElement);
+      messageContainer.appendChild(messageElement);
+      messages.appendChild(messageContainer);
+    });
+  </script>
+</body>
+</html>
