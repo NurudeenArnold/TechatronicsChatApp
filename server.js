@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("user joined", (username) => {
-        console.log(`${username} joined the chat`); // Log to server console
+        console.log(`${username} joined the chat`);
         io.emit("chat message", {
             username: "System",
             message: `${username} has joined the chat`,
@@ -30,7 +30,7 @@ io.on("connection", (socket) => {
 
     socket.on("chat message", (data) => {
         const { username, message } = data;
-        io.emit("chat message", { username, message }); // Emitting message with username
+        io.emit("chat message", { username, message });
     });
 
 
