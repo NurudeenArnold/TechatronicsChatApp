@@ -39,9 +39,6 @@ li {
 	margin-bottom: 10px;
 }
 
-
-
-
 .message-container {
 	position: relative;
 	background-color: var(--text-color);
@@ -71,9 +68,6 @@ li {
 	margin-right: 2rem;
 }
 
-
-
-
 .usernameForm {
 	position: absolute;
 	top: 50%;
@@ -102,7 +96,7 @@ li {
 }
 
 .messageSend input {
-	border: 0;
+	border: var(--main-color) 1px solid;
 	outline: 0;
 	padding: 10px;
 	padding-left: 20px !important;
@@ -112,7 +106,7 @@ li {
 }
 
 .messageSend button {
-	border: 0;
+	border: var(--main-color) 1px solid;
 	outline: 0;
 	border-radius: 0 25px 25px 0;
 	padding: 10px;
