@@ -16,24 +16,22 @@ app.use(express.static(path.join(__dirname)));
 io.on("connection", (socket) => {
 	console.log("A user connected");
 
-    socket.on("disconnect", () => {
-        console.log("User disconnected");
-    });
+	socket.on("disconnect", () => {
+		console.log("User disconnected");
+	});
 
-    socket.on("user joined", (username) => {
-        console.log(`${username} joined the chat`);
-        io.emit("chat message", {
-            username: "System",
-            message: `${username} has joined the chat`,
-        });
-    });
+	socket.on("user joined", (username) => {
+		console.log(`${username} joined the chat`);
+		io.emit("chat message", {
+			username: "System",
+			message: `${username} has joined the chat`,
+		});
+	});
 
-    socket.on("chat message", (data) => {
-        const { username, message } = data;
-        io.emit("chat message", { username, message });
-    });
-
-
+	socket.on("chat message", (data) => {
+		const { username, message } = data;
+		io.emit("chat message", { username, message });
+	});
 });
 
 server.listen(3000, () => {
