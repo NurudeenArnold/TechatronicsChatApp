@@ -39,17 +39,8 @@ li {
 	margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
 
-=======
-input {
-	margin: 10px;
-	margin-right: 5px;
-	border-radius: 5px;
-	border: 1px var(--main-color) solid !important;
-	z-index: 1;
-}
->>>>>>> 4635c8219400b29256be9af88358ba41be86b4f7
+
 
 .message-container {
 	position: relative;
@@ -80,11 +71,9 @@ input {
 	margin-right: 2rem;
 }
 
-<<<<<<< HEAD
 
 
 
-=======
 .usernameForm {
 	position: absolute;
 	top: 50%;
@@ -98,7 +87,6 @@ input {
 	display: flex;
 	flex-direction: column;
 }
->>>>>>> 4635c8219400b29256be9af88358ba41be86b4f7
 
 .messageSend {
 	position: absolute;
